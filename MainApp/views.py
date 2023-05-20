@@ -37,7 +37,7 @@ def snippet_create(request):
         snippet = Snippet(
             name=form_data['name'],
             lang=form_data['lang'],
-            name=form_data['code'],
+            code=form_data['code'],
         )
         snippet.save()
         return redirect('snippet-list')
