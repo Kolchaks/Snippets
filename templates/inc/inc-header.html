@@ -2,7 +2,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">
+            <a class="navbar-brand" href="/">
                 <img src="{% static 'images/logo.png' %}" width="32" height="32" alt="">
                 PythonBin
             </a>
@@ -24,6 +24,20 @@
                     </li>
                 </ul>
             </div>
+            {% if request.user.is_authenticated %}
+                <span style="color:white">
+                    Welcome, {{ request.user.username }}
+                    <a href="{% url 'logout' %}">logout</a>
+                </span>
+            {% else %}
+                <form method="post" action="{% url 'login' %}">{% csrf_token %}
+                    <input name="username" type="text" placeholder="username">
+                    <input name="password" type="password" placeholder="password">
+                    <button type="submit">login</button>
+                </form>
+                <a href="{% url 'registration' %}">Регистрация</a>
+            {% endif %}
+
         </div>
     </nav>
 </header>
