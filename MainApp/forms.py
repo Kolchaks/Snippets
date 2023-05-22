@@ -1,6 +1,6 @@
 from django.forms import ModelForm, CharField, PasswordInput
 from django.core.exceptions import ValidationError
-from MainApp.models import Snippet
+from MainApp.models import Snippet, Comment
 from django.contrib.auth.models import User
 
 
@@ -8,7 +8,7 @@ class SnippetForm(ModelForm):
     class Meta:
         model = Snippet
         # Описываем поля, которые будем заполнять в форме
-        fields = ['name', 'lang', 'code']
+        fields = ['name', 'lang', 'code', 'private']
 
 
 class UserRegistrationForm(ModelForm):
@@ -32,3 +32,9 @@ class UserRegistrationForm(ModelForm):
         if commit:
             user.save()
         return user
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
