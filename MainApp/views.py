@@ -116,5 +116,4 @@ def comment_create(request):
             snippet = Snippet.objects.get(id=snippet_id)
             comment.snippet = snippet
             comment.save()
-        raise
         return redirect(request.META.get('HTTP_REFERER', '/'))
